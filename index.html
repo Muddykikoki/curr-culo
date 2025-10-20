@@ -363,14 +363,15 @@
         .skills-section {
             padding: 8rem 0;
             position: relative;
-            overflow: hidden;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
         }
 
         .section-title {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-size: clamp(2rem, 6vw, 4rem);
             font-weight: 900;
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 3rem;
             background: linear-gradient(135deg, #fff, var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -391,28 +392,57 @@
 
         .scroll-wrapper {
             position: relative;
-            height: 500px;
-            overflow: hidden;
+            height: 520px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            cursor: grab;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) rgba(0, 0, 0, 0.3);
+            padding: 1rem 0;
+        }
+
+        .scroll-wrapper::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .scroll-wrapper::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin: 0 2rem;
+        }
+
+        .scroll-wrapper::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .scroll-wrapper:active {
+            cursor: grabbing;
         }
 
         .scroll-container {
             display: flex;
             gap: 2rem;
-            position: absolute;
-            transition: transform 0.1s ease-out;
-            will-change: transform;
+            padding: 1rem 2rem;
+            width: max-content;
+            min-height: 480px;
         }
 
         .skill-card {
             min-width: 380px;
+            max-width: 380px;
             background: linear-gradient(135deg, rgba(0, 242, 254, 0.1), rgba(255, 0, 255, 0.1));
             border-radius: 30px;
-            padding: 3rem;
+            padding: 2.5rem;
             backdrop-filter: blur(10px);
             border: 2px solid rgba(0, 242, 254, 0.2);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .skill-card::before {
@@ -458,17 +488,19 @@
         }
 
         .skill-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             margin-bottom: 1rem;
             font-weight: 700;
             color: #fff;
+            line-height: 1.3;
         }
 
         .skill-card p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
             margin-bottom: 1.5rem;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            flex-grow: 1;
         }
 
         .skill-tags {
@@ -734,7 +766,23 @@
             }
 
             .skill-card {
-                min-width: 320px;
+                min-width: 300px;
+                max-width: 300px;
+                padding: 2rem;
+            }
+
+            .skill-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+
+            .skill-card h3 {
+                font-size: 1.4rem;
+            }
+
+            .skill-card p {
+                font-size: 0.9rem;
             }
 
             .cta-buttons {
@@ -743,23 +791,127 @@
 
             .btn-glow {
                 text-align: center;
+                width: 100%;
+            }
+
+            .scroll-wrapper {
+                height: 450px;
+            }
+
+            .scroll-container {
+                min-height: 400px;
+                padding: 1rem;
+                gap: 1.5rem;
             }
         }
 
         @media (max-width: 768px) {
+            .skills-section {
+                padding: 5rem 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .scroll-wrapper {
+                height: auto;
+                max-height: 480px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                cursor: default;
+            }
+
+            .scroll-container {
+                flex-direction: column;
+                width: 100%;
+                padding: 1rem;
+                gap: 1.5rem;
+                min-height: auto;
+            }
+
+            .skill-card {
+                min-width: 100%;
+                max-width: 100%;
+                padding: 2rem 1.5rem;
+            }
+
+            .skill-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .skill-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .skill-card p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            .skill-tag {
+                padding: 0.4rem 0.9rem;
+                font-size: 0.75rem;
+            }
+
             .download-cv-btn {
                 width: 60px;
                 height: 60px;
                 bottom: 2rem;
                 right: 2rem;
+                font-size: 1.5rem;
+            }
+
+            .download-tooltip {
+                display: none;
             }
 
             .nav-link {
                 margin: 0.5rem 0;
             }
 
+            .hero {
+                padding-top: 100px;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .contact-card {
+                margin-bottom: 1.5rem;
+            }
+
+            .timeline-content {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
             .skill-card {
-                min-width: 280px;
+                padding: 1.5rem;
+            }
+
+            .btn-glow {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+
+            .navbar-brand::before,
+            .navbar-brand::after {
+                display: none;
             }
         }
 
@@ -850,9 +1002,14 @@
                         <span class="typing-animation">Desenvolvedor Back-End & Especialista em Automação</span>
                     </p>
                     <p>
-                        Transformo ideias em código poderoso. Especializado em Python, Java e PHP, 
-                        com experiência real em engenharia de hardware pela Lenovo. 
-                        Apaixonado por criar soluções que fazem a diferença.
+                        Transformo ideias em código poderoso. Com experiência prática na Lenovo em engenharia de hardware 
+                        e diagnóstico de sistemas embarcados, combino conhecimento técnico profundo em Python, Java e PHP 
+                        com uma paixão insaciável por automação e inteligência artificial. 
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        Atualmente estudando Tecnologia da Informação na FIEC, sou autodidata, criativo e focado em 
+                        resultados práticos. Minha especialidade está em integrar soluções entre hardware e software, 
+                        criando sistemas eficientes que fazem a diferença no mundo real.
                     </p>
                     <div class="cta-buttons">
                         <a href="#contact" class="btn-glow btn-primary-glow">Entre em Contato</a>
@@ -880,21 +1037,29 @@
     <!-- Skills Section -->
     <section id="skills" class="skills-section">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Minhas Habilidades</h2>
+            <h2 class="section-title" data-aos="fade-up">Minhas Habilidades & Conhecimentos</h2>
+            <p class="text-center mb-4 d-none d-md-block" style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem;" data-aos="fade-up">
+                Arraste horizontalmente ou use a roda do mouse para explorar minhas competências técnicas
+            </p>
+            <p class="text-center mb-4 d-md-none" style="color: rgba(255, 255, 255, 0.7); font-size: 1rem;" data-aos="fade-up">
+                Role para baixo para ver todas as habilidades
+            </p>
         </div>
-        <div class="scroll-wrapper">
+        <div class="scroll-wrapper" id="scrollWrapper">
             <div class="scroll-container" id="skillsScroll">
                 <div class="skill-card" data-aos="fade-right">
                     <div class="skill-icon">
                         <i class="fab fa-python"></i>
                     </div>
                     <h3>Python Avançado</h3>
-                    <p>Especialista em automação, IA, interfaces gráficas e sistemas web com frameworks modernos de alta performance.</p>
+                    <p>Domínio completo em automação de processos, desenvolvimento de sistemas de IA, criação de interfaces gráficas profissionais e aplicações web robustas com frameworks modernos.</p>
                     <div class="skill-tags">
                         <span class="skill-tag">Django</span>
                         <span class="skill-tag">Flask</span>
                         <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
                         <span class="skill-tag">AI/ML</span>
+                        <span class="skill-tag">Tkinter</span>
                     </div>
                 </div>
 
@@ -903,11 +1068,12 @@
                         <i class="fab fa-java"></i>
                     </div>
                     <h3>Java Intermediário</h3>
-                    <p>Desenvolvimento de aplicações desktop robustas e gerenciamento eficiente de dados corporativos.</p>
+                    <p>Desenvolvimento de aplicações desktop robustas, gerenciamento eficiente de dados corporativos e implementação de arquiteturas escaláveis.</p>
                     <div class="skill-tags">
-                        <span class="skill-tag">Spring</span>
+                        <span class="skill-tag">Spring Boot</span>
                         <span class="skill-tag">Hibernate</span>
                         <span class="skill-tag">JavaFX</span>
+                        <span class="skill-tag">JDBC</span>
                     </div>
                 </div>
 
@@ -915,12 +1081,13 @@
                     <div class="skill-icon">
                         <i class="fab fa-php"></i>
                     </div>
-                    <h3>PHP & MySQL</h3>
-                    <p>Criação de sistemas web dinâmicos com integração completa de bancos de dados relacionais.</p>
+                    <h3>PHP & Backend</h3>
+                    <p>Criação de sistemas web dinâmicos e escaláveis com integração completa de bancos de dados relacionais e APIs RESTful.</p>
                     <div class="skill-tags">
                         <span class="skill-tag">Laravel</span>
                         <span class="skill-tag">MySQL</span>
                         <span class="skill-tag">APIs REST</span>
+                        <span class="skill-tag">MVC</span>
                     </div>
                 </div>
 
@@ -929,11 +1096,12 @@
                         <i class="fab fa-js"></i>
                     </div>
                     <h3>JavaScript & DOM</h3>
-                    <p>Manipulação avançada do DOM, criação de interfaces interativas e programação orientada a objetos.</p>
+                    <p>Manipulação avançada do DOM, criação de interfaces interativas e responsivas, programação orientada a objetos e desenvolvimento moderno.</p>
                     <div class="skill-tags">
                         <span class="skill-tag">ES6+</span>
                         <span class="skill-tag">React</span>
                         <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">POO</span>
                     </div>
                 </div>
 
@@ -941,12 +1109,13 @@
                     <div class="skill-icon">
                         <i class="fas fa-database"></i>
                     </div>
-                    <h3>SQL & Databases</h3>
-                    <p>Modelagem e normalização de bancos de dados seguindo as 13 normas SQL para máxima eficiência.</p>
+                    <h3>SQL & Bancos de Dados</h3>
+                    <p>Especialista em modelagem e normalização de bancos de dados seguindo as 13 normas SQL. Otimização de queries e design de esquemas eficientes.</p>
                     <div class="skill-tags">
                         <span class="skill-tag">PostgreSQL</span>
                         <span class="skill-tag">MySQL</span>
                         <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Normalização</span>
                     </div>
                 </div>
 
@@ -955,8 +1124,9 @@
                         <i class="fas fa-microchip"></i>
                     </div>
                     <h3>Hardware & BIOS</h3>
-                    <p>Experiência prática em manutenção, diagnóstico e otimização de sistemas embarcados pela Lenovo.</p>
+                    <p>Experiência prática na Lenovo em manutenção, diagnóstico avançado de hardware e otimização de sistemas embarcados. Expertise em BIOS e firmware.</p>
                     <div class="skill-tags">
+                        <span class="skill-tag">Lenovo</span>
                         <span class="skill-tag">Diagnóstico</span>
                         <span class="skill-tag">BIOS</span>
                         <span class="skill-tag">Embedded</span>
@@ -967,12 +1137,13 @@
                     <div class="skill-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3>Estudando Agora</h3>
-                    <p>Em constante evolução, dominando novas tecnologias e aprofundando conhecimentos técnicos.</p>
+                    <h3>Estudando Atualmente</h3>
+                    <p>Em constante evolução profissional, dominando novas tecnologias e aprofundando conhecimentos em arquitetura de software e low-level programming.</p>
                     <div class="skill-tags">
                         <span class="skill-tag">C#</span>
                         <span class="skill-tag">Ruby</span>
                         <span class="skill-tag">Assembler</span>
+                        <span class="skill-tag">.NET</span>
                     </div>
                 </div>
 
@@ -981,11 +1152,26 @@
                         <i class="fas fa-palette"></i>
                     </div>
                     <h3>Design & Multimídia</h3>
-                    <p>Domínio completo do Adobe Creative Suite para criação de conteúdo visual profissional.</p>
+                    <p>Domínio completo do Adobe Creative Suite para criação de conteúdo visual profissional, edição de vídeo e design gráfico avançado.</p>
                     <div class="skill-tags">
                         <span class="skill-tag">Photoshop</span>
+                        <span class="skill-tag">Illustrator</span>
                         <span class="skill-tag">Premiere</span>
                         <span class="skill-tag">After Effects</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-aos="fade-right" data-aos-delay="800">
+                    <div class="skill-icon">
+                        <i class="fab fa-linux"></i>
+                    </div>
+                    <h3>Linux & DevOps</h3>
+                    <p>Conhecimento sólido em ambientes Linux, automação de tarefas, scripts shell e gerenciamento de servidores para deploy eficiente.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Ubuntu</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Docker</span>
                     </div>
                 </div>
             </div>
@@ -1007,8 +1193,12 @@
                         <p>
                             Atuação em engenharia de notebooks e microcomputadores com foco em excelência técnica. 
                             Responsável por diagnóstico avançado de hardware, configuração e otimização de BIOS, 
-                            além de suporte especializado à equipe de desenvolvimento de software. 
-                            Contribuí para a melhoria de processos e correção de sistemas embarcados.
+                            além de suporte especializado à equipe de desenvolvimento de software.
+                        </p>
+                        <p style="margin-top: 1rem;">
+                            Contribuí diretamente para a melhoria de processos de manutenção, correção de sistemas 
+                            embarcados e otimização de performance de equipamentos. Desenvolvi raciocínio técnico 
+                            aprofundado em arquitetura de hardware e software integrado.
                         </p>
                         <div class="skill-tags">
                             <span class="skill-tag">Hardware</span>
@@ -1041,20 +1231,32 @@
             </div>
 
             <div class="row mt-5">
-                <div class="col-md-6" data-aos="fade-up">
+                <div class="col-md-4" data-aos="fade-up">
                     <div class="contact-card">
                         <div class="contact-icon"><i class="fas fa-graduation-cap"></i></div>
                         <h4>Formação Acadêmica</h4>
-                        <p><strong>Ensino Técnico em TI</strong><br>FIEC (Cursando - Conclusão 2026)</p>
+                        <p><strong>Ensino Técnico em TI</strong><br>FIEC - Fundação Indaiatubana<br>(Cursando - Conclusão 2026)</p>
                         <p class="mt-3"><strong>Ensino Médio Completo</strong><br>Escola Helena de Campos Camargo</p>
                     </div>
                 </div>
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="contact-card">
                         <div class="contact-icon"><i class="fas fa-language"></i></div>
                         <h4>Idiomas</h4>
-                        <p>Inglês - Básico<br>Espanhol - Básico<br>Italiano - Básico</p>
-                        <p class="mt-3" style="color: var(--primary);">Em constante aprimoramento</p>
+                        <p><strong>Inglês</strong> - Básico<br><strong>Espanhol</strong> - Básico<br><strong>Italiano</strong> - Básico</p>
+                        <p class="mt-3" style="color: var(--primary);">🚀 Em constante aprimoramento</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-star"></i></div>
+                        <h4>Soft Skills</h4>
+                        <p>
+                            • Aprendizado rápido e autodidata<br>
+                            • Raciocínio lógico e criativo<br>
+                            • Foco em eficiência<br>
+                            • Comunicação eficaz
+                        </p>
                     </div>
                 </div>
             </div>
@@ -1212,6 +1414,61 @@
 
         window.addEventListener('scroll', updateSkillsScroll);
         window.addEventListener('resize', updateSkillsScroll);
+
+        // Horizontal scroll for skills section
+        const scrollWrapper = document.getElementById('scrollWrapper');
+        let isScrolling = false;
+
+        // Check if mobile
+        const isMobile = window.innerWidth <= 768;
+
+        if (!isMobile) {
+            // Mouse wheel horizontal scroll (desktop only)
+            scrollWrapper.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                scrollWrapper.scrollLeft += e.deltaY;
+            });
+
+            // Touch/drag scroll (desktop only)
+            let isDragging = false;
+            let startX;
+            let scrollLeft;
+
+            scrollWrapper.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.pageX - scrollWrapper.offsetLeft;
+                scrollLeft = scrollWrapper.scrollLeft;
+                scrollWrapper.style.cursor = 'grabbing';
+            });
+
+            scrollWrapper.addEventListener('mouseleave', () => {
+                isDragging = false;
+                scrollWrapper.style.cursor = 'grab';
+            });
+
+            scrollWrapper.addEventListener('mouseup', () => {
+                isDragging = false;
+                scrollWrapper.style.cursor = 'grab';
+            });
+
+            scrollWrapper.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.pageX - scrollWrapper.offsetLeft;
+                const walk = (x - startX) * 2;
+                scrollWrapper.scrollLeft = scrollLeft - walk;
+            });
+        }
+
+        // Update on resize
+        window.addEventListener('resize', () => {
+            const isMobileNow = window.innerWidth <= 768;
+            if (isMobileNow) {
+                scrollWrapper.style.cursor = 'default';
+            } else {
+                scrollWrapper.style.cursor = 'grab';
+            }
+        });
 
         // Download CV Functionality
         document.getElementById('downloadCV').addEventListener('click', function() {
@@ -1430,4 +1687,4 @@ LinkedIn: [Seu LinkedIn aqui]
         console.log('%c💻 Desenvolvido com paixão por Marlos Henrique', 'color: #ff00ff; font-size: 14px;');
     </script>
 </body>
-</html>
+                            </html>
